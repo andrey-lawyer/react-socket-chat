@@ -30,6 +30,7 @@ export const useConnectSocket = () => {
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
+    console.log(event.target);
     setPage(value);
     SocketApi.socket?.emit("server-pagination", value);
   };
