@@ -4,7 +4,10 @@ class SocketApi {
   static socket: null | Socket = null;
 
   static createConnectionWithToken(authToken: string) {
-    this.socket = io(import.meta.env.VITE_BACKEND_URL, {
+    const BACKEND_URL =
+      import.meta.env.VITE_BACKEND_URL || "https://nest-sockets.onrender.com/";
+
+    this.socket = io(BACKEND_URL, {
       auth: { token: authToken },
     });
 
