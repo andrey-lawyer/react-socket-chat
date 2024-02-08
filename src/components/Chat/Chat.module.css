@@ -1,0 +1,71 @@
+.chat-container {
+  padding: 10px;
+  border: 1px solid #ccc;
+  max-width: 600px;
+}
+
+.message_list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.message_item {
+  border: 1px solid #ddd;
+  background-color: #f9f9f9c3;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Стили для кнопок и полей ввода */
+.button {
+  border: none;
+  padding-top: 5px;
+  background-color: transparent;
+}
+
+.input-field {
+  margin-bottom: 10px;
+}
+
+.image {
+  width: 20px;
+  height: 20px;
+}
+
+.block_user {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgb(236, 219, 219);
+}
+
+.block_message {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  align-items: center;
+}
+
+.link {
+  display: block;
+}
+
+.picture {
+  height: 40px;
+  border-radius: 5px;
+}
+
+.title {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.date {
+  font-style: italic;
+}

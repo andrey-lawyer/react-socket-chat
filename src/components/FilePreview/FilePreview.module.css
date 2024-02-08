@@ -1,0 +1,10 @@
+.link_block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.link_button {
+  border: none;
+  background-color: transparent;
+}

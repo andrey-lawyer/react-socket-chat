@@ -1,0 +1,13 @@
+.sort {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+  background-color: rgb(237, 232, 241);
+  border-radius: 5px;
+}
+
+.block {
+  display: flex;
+  gap: 10px;
+}

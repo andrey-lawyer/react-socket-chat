@@ -1,0 +1,66 @@
+.text {
+  width: 100%;
+  border: none;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  resize: none;
+}
+
+.form {
+  position: relative;
+
+  background-color: azure;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form_comment {
+  margin-left: 20px;
+  border: solid 1px blue;
+}
+
+.form_chat {
+  border: solid 1px rgb(91, 90, 85);
+  border-radius: 10px;
+}
+
+.icon {
+  position: absolute;
+  left: -24px;
+  top: 50px;
+}
+.block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+}
+
+.button_a {
+  text-decoration: underline;
+  color: blue;
+}
+
+.button_code {
+  font-family: monospace;
+  background-color: #f0f0f0;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.button_i {
+  font-style: italic;
+}
+
+.button_strong {
+  font-weight: bold;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
