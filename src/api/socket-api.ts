@@ -9,7 +9,7 @@ class SocketApi {
     });
 
     this.socket.on("connect", () => {
-      console.log("connect server with token");
+      console.log("connect server with token...");
     });
 
     this.socket.on("disconnect", () => {
