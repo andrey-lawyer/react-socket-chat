@@ -1,7 +1,9 @@
 import axios from "axios";
 
-axios.defaults.baseURL =
-  import.meta.env.VITE_BACKEND_URL || "https://nest-sockets.onrender.com/";
+const ENV = import.meta.env.VITE_BACKEND_URL;
+const URL_BACK = ENV || "https://nest-sockets.onrender.com/";
+
+axios.defaults.baseURL = URL_BACK;
 
 interface ILogin {
   email: string;
@@ -14,13 +16,15 @@ interface IRegister extends ILogin {
 }
 
 export async function getCaptcha(): Promise<string> {
-  const { data } = await axios.get("captcha", { withCredentials: true });
+  const { data } = await axios.get("captcha", {
+    withCredentials: ENV ? true : false,
+  });
   return data;
 }
 
 export async function registerMember(member: IRegister): Promise<string> {
   const { data } = await axios.post("auth/register", member, {
-    withCredentials: true,
+    withCredentials: ENV ? true : false,
   });
   return data;
 }
