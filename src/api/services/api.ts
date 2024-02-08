@@ -16,15 +16,19 @@ interface IRegister extends ILogin {
 }
 
 export async function getCaptcha(): Promise<string> {
+  console.log(URL_BACK);
   const { data } = await axios.get("captcha", {
-    withCredentials: ENV ? true : false,
+    // withCredentials: ENV ? true : false,
+    withCredentials: true,
   });
   return data;
 }
 
 export async function registerMember(member: IRegister): Promise<string> {
+  console.log(member);
   const { data } = await axios.post("auth/register", member, {
-    withCredentials: ENV ? true : false,
+    // withCredentials: ENV ? true : false,
+    withCredentials: true,
   });
   return data;
 }

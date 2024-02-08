@@ -36,6 +36,7 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(formData);
 
     try {
       const data = await registerMember(formData);
