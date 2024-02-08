@@ -18,6 +18,7 @@ const Chat: React.FC = () => {
     useConnectSocket();
   console.log(error);
   console.log(messages);
+  console.log(import.meta.env.VITE_BACKEND_URL);
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
