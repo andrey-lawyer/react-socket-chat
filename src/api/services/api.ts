@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const ENV = import.meta.env.VITE_BACKEND_URL;
+// const ENV = import.meta.env.VITE_BACKEND_URL;
 // const URL_BACK = ENV || "https://nest-sockets.onrender.com/";
-const URL_BACK = ENV || "http://localhost:5000/";
+// const URL_BACK = ENV || "http://localhost:3000/";
+const URL_BACK = "http://localhost:3000/";
 
 axios.defaults.baseURL = URL_BACK;
 

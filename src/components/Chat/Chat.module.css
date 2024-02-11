@@ -4,6 +4,35 @@
   max-width: 600px;
 }
 
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.pagination {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: white;
+}
+
 .message_list {
   display: flex;
   flex-direction: column;
@@ -17,7 +46,6 @@
   border-radius: 5px;
 }
 
-/* Стили для кнопок и полей ввода */
 .button {
   border: none;
   padding-top: 5px;

@@ -3,12 +3,9 @@ import SocketApi from "../../api/socket-api";
 import { FaCommentDots } from "react-icons/fa";
 import { BsFillSendFill } from "react-icons/bs";
 import styles from "./MessageForm.module.css";
-
-interface IFormMessage {
-  type: string;
-  page: number;
-  id?: number;
-}
+import { IFormMessage } from "../../types/props.types";
+import Validation from "../../validation/validation";
+import { toast } from "react-toastify";
 
 const MessageForm = ({ type, page, id }: IFormMessage) => {
   const [message, setMessage] = useState("");
@@ -25,22 +22,30 @@ const MessageForm = ({ type, page, id }: IFormMessage) => {
     if (file) {
       const reader = new FileReader();
 
-      reader.onload = () => {
+      reader.onload = async () => {
         const dataFile = reader.result;
+        // validation file
+        if (typeof dataFile === "string") {
+          const fileError = await Validation.processFile(dataFile);
+          if (fileError) {
+            toast.error(fileError);
+            return;
+          }
+        }
 
         SocketApi.socket?.emit("server-message", {
           file: dataFile,
           page,
           text,
         });
+        setMessage("");
       };
 
       reader.readAsDataURL(file);
     } else {
       SocketApi.socket?.emit("server-message", { text, page });
+      setMessage("");
     }
-
-    form.reset();
   };
 
   const handleSubmitComment = (
@@ -56,8 +61,16 @@ const MessageForm = ({ type, page, id }: IFormMessage) => {
     if (commentFile) {
       const reader = new FileReader();
 
-      reader.onload = () => {
+      reader.onload = async () => {
         const dataFile = reader.result;
+        // validation file
+        if (typeof dataFile === "string") {
+          const fileError = await Validation.processFile(dataFile);
+          if (fileError) {
+            toast.error(fileError);
+            return;
+          }
+        }
 
         SocketApi.socket?.emit("server-add-comment", {
           file: dataFile,
@@ -65,6 +78,7 @@ const MessageForm = ({ type, page, id }: IFormMessage) => {
           messageId,
           page,
         });
+        setMessage("");
       };
 
       reader.readAsDataURL(commentFile);
@@ -74,9 +88,8 @@ const MessageForm = ({ type, page, id }: IFormMessage) => {
         messageId,
         page,
       });
+      setMessage("");
     }
-
-    form.reset();
   };
 
   const handleTagClick = (tag: string) => {

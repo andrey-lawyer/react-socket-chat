@@ -1,0 +1,38 @@
+.nav {
+  background-color: #333;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+
+.navList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navItem {
+  margin-right: 20px;
+}
+
+.navItem:last-child {
+  margin-right: 0;
+}
+
+.navItem a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s;
+}
+
+.navItem a:hover,
+.navItem a:focus {
+  color: #ffcc00;
+}
+
+.active {
+  font-weight: bold;
+}

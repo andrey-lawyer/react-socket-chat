@@ -1,5 +1,5 @@
 const HomePage: React.FC = () => {
-  return <div className="tags-input-container">ededed</div>;
+  return <h1 className="home">Welcome to the chat room!</h1>;
 };
 
 export default HomePage;

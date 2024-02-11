@@ -6,8 +6,10 @@ class SocketApi {
   static createConnectionWithToken(authToken: string) {
     // const BACKEND_URL =
     //   import.meta.env.VITE_BACKEND_URL || "https://nest-sockets.onrender.com/";
-    const BACKEND_URL =
-      import.meta.env.VITE_BACKEND_URL || "http://localhost:5000/";
+    // const BACKEND_URL =
+    //   import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/";
+    console.log(process.env.VITE_BACKEND_URL);
+    const BACKEND_URL = "http://localhost:3000/";
 
     this.socket = io(BACKEND_URL, {
       auth: { token: authToken },

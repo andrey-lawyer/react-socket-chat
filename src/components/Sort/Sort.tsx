@@ -2,12 +2,10 @@ import { Button } from "@mui/material";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 
-import styles from "./Sort.module.css";
 import SocketApi from "../../api/socket-api";
+import { ISortProps } from "../../types/props.types";
 
-interface ISortProps {
-  page: number;
-}
+import styles from "./Sort.module.css";
 
 function Sort({ page }: ISortProps) {
   const handleSort = (field: string, type: string) => {

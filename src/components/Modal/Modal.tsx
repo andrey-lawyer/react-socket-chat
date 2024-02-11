@@ -1,12 +1,7 @@
 import ReactDOM from "react-dom";
-import styles from "./Modal.module.css";
-import { ReactNode } from "react";
 
-interface IModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: ReactNode;
-}
+import { IModalProps } from "../../types/props.types";
+import styles from "./Modal.module.css";
 
 const Modal = ({ isOpen, onClose, children }: IModalProps) => {
   const modalClassName = isOpen

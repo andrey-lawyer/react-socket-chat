@@ -1,24 +1,31 @@
 import React, { useRef } from "react";
 import Zoom from "react-medium-image-zoom";
-import "react-medium-image-zoom/dist/styles.css";
+import { Pagination } from "@mui/material";
+
 import { FaFileDownload } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+
+import "react-medium-image-zoom/dist/styles.css";
+
 import SocketApi from "../../api/socket-api";
+import { formatDate } from "../../services/formatData";
 import { useConnectSocket } from "../../hooks/useConnectSocket";
-import styles from "./Chat.module.css";
+
 import MessageForm from "../MessageForm/MessageForm";
 import FilePreview from "../FilePreview/FilePreview";
 import ParseComponent from "../ParseComponent/ParseComponent";
-import { Pagination } from "@mui/material";
-import { formatDate } from "../../services/formatData";
 import Sort from "../Sort/Sort";
 
+import styles from "./Chat.module.css";
+import { toast } from "react-toastify";
+
 const Chat: React.FC = () => {
-  const { messages, error, page, handleChangePage, totalMessages } =
+  const { messages, page, handleChangePage, totalMessages, loading, error } =
     useConnectSocket();
-  console.log(error);
+  if (error) toast.error(error);
+  //
   console.log(messages);
-  console.log(import.meta.env.VITE_BACKEND_URL);
+  //
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
@@ -29,8 +36,14 @@ const Chat: React.FC = () => {
   const totalPages = Math.ceil(totalMessages / 25) || 1;
   return (
     <div className={styles.chatContainer}>
+      {loading && <div className={styles.loader} />}
       <Sort page={page} />
-      <Pagination count={totalPages} page={page} onChange={handleChangePage} />
+      <Pagination
+        className={styles.pagination}
+        count={totalPages}
+        page={page}
+        onChange={handleChangePage}
+      />
 
       <ul className={styles.message_list}>
         {messages.map((el) => (

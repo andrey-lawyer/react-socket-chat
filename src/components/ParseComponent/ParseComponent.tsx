@@ -1,7 +1,5 @@
-interface IParseProps {
-  htmlContent: string;
-  className: string;
-}
+import { IParseProps } from "../../types/props.types";
+
 
 function ParseComponent({ htmlContent, className }: IParseProps) {
   return (

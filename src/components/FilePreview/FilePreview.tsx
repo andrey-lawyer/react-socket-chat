@@ -1,13 +1,12 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { FaFileDownload } from "react-icons/fa";
-import Modal from "../Modal/Modal";
 import { MdOutlinePreview } from "react-icons/md";
 
-import styles from "./FilePreview.module.css";
+import Modal from "../Modal/Modal";
 
-interface IFilePreviewProps {
-  fileUrl: string;
-}
+import styles from "./FilePreview.module.css";
+import { IFilePreviewProps } from "../../types/props.types";
 
 function FilePreview({ fileUrl }: IFilePreviewProps) {
   const [fileContent, setFileContent] = useState("");
@@ -23,7 +22,7 @@ function FilePreview({ fileUrl }: IFilePreviewProps) {
       setFileContent(content);
       openModal();
     } catch (error) {
-      console.error("Failed to load file content:", error);
+      toast.error("Failed to load file content");
     }
   };
 
@@ -34,7 +33,6 @@ function FilePreview({ fileUrl }: IFilePreviewProps) {
         rel="noopener noreferrer nofollow"
         target="_blank"
         title="Previewing a file"
-        // onMouseEnter={loadFileContent}
       >
         <FaFileDownload size="40px" />
       </a>
