@@ -16,31 +16,12 @@ const RegistrationForm = () => {
   });
   const [tokenCaptcha, setTokenCaptcha] = useState("");
 
-  // const [captchaImage, setCaptchaImage] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
-  // const fetchCaptcha = async () => {
-  //   try {
-  //     const data = await getCaptcha();
-  //     setCaptchaImage(data);
-  //   } catch (error) {
-  //     toast.error("Error fetching captcha");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchCaptcha();
-  // }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  // const handleCaptchaRefresh = async () => {
-  //   const data: string = await getCaptcha();
-  //   setCaptchaImage(data);
-  // };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -134,35 +115,6 @@ const RegistrationForm = () => {
           placeholder="Enter your website URL"
         />
       </label>
-
-      {/* <label className={styles.formLabel}>
-        <p className={styles.formSubtitle}>
-          Please confirm that you are not a robot.
-        </p>
-        <div className={styles.captcha_block}>
-          <img
-            className={styles.captchaImage}
-            src={`data:image/svg+xml;utf8,${encodeURIComponent(captchaImage)}`}
-            alt="Captcha"
-          />
-          <button
-            type="button"
-            className={styles.refreshButton}
-            onClick={handleCaptchaRefresh}
-          >
-            Refresh Captcha
-          </button>
-        </div>
-        <input
-          type="text"
-          name="captcha"
-          value={formData.captcha}
-          onChange={handleChange}
-          className={styles.formInput}
-          placeholder="Enter the captcha"
-          required
-        />
-      </label> */}
       <div
         className={styles.recaptcha}
         style={{ transform: "scale(0.85)", transformOrigin: "0 0" }}

@@ -4,7 +4,6 @@ class SocketApi {
   static socket: null | Socket = null;
 
   static createConnectionWithToken(authToken: string) {
-    // console.log(process.env.REACT_APP_BACKEND_URL);
     const BACKEND_URL = process.env.REACT_APP_BACKEND_URL!;
 
     this.socket = io(BACKEND_URL, {
