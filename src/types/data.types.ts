@@ -20,3 +20,13 @@ export interface IMessages {
   comments?: IMessages[];
   messageId?: number;
 }
+
+export interface ILogin {
+  email: string;
+  password: string;
+}
+
+export interface IRegister extends ILogin {
+  name: string;
+  homePage?: string;
+}

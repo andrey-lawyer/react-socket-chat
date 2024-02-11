@@ -1,33 +1,34 @@
 import axios from "axios";
+import { ILogin, IRegister } from "../../types/data.types";
 
-// const ENV = import.meta.env.VITE_BACKEND_URL;
-// const URL_BACK = ENV || "https://nest-sockets.onrender.com/";
-// const URL_BACK = ENV || "http://localhost:3000/";
-const URL_BACK = "http://localhost:3000/";
 
-axios.defaults.baseURL = URL_BACK;
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
-interface ILogin {
-  email: string;
-  password: string;
-}
+// export async function getCaptcha(): Promise<string> {
+//   console.log(URL_BACK);
+//   const { data } = await axios.get("captcha", {
+//     withCredentials: true,
+//   });
+//   return data;
+// }
 
-interface IRegister extends ILogin {
-  name: string;
-  captcha: string;
-}
+// export async function registerMember(member: IRegister): Promise<string> {
+//   console.log(member);
+//   const { data } = await axios.post("auth/register", member, {
+//     withCredentials: true,
+//   });
+//   return data;
+// }
 
-export async function getCaptcha(): Promise<string> {
-  console.log(URL_BACK);
-  const { data } = await axios.get("captcha", {
-    withCredentials: true,
-  });
-  return data;
-}
-
-export async function registerMember(member: IRegister): Promise<string> {
+export async function registerMember(
+  member: IRegister,
+  captchaToken: string
+): Promise<string> {
   console.log(member);
   const { data } = await axios.post("auth/register", member, {
+    headers: {
+      recaptcha: captchaToken,
+    },
     withCredentials: true,
   });
   return data;

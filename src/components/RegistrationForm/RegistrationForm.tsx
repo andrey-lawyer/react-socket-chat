@@ -1,44 +1,46 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
-import { getCaptcha, registerMember } from "../../api/services/api";
+import { registerMember } from "../../api/services/api";
 import Validation from "../../validation/validation";
 
 import styles from "./RegistrationForm.module.css";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const RegistrationForm = () => {
+  console.log(process.env.REACT_APP_CAPTCHA_KEY);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    captcha: "",
     homePage: "",
   });
+  const [tokenCaptcha, setTokenCaptcha] = useState("");
 
-  const [captchaImage, setCaptchaImage] = useState("");
+  // const [captchaImage, setCaptchaImage] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const fetchCaptcha = async () => {
-    try {
-      const data = await getCaptcha();
-      setCaptchaImage(data);
-    } catch (error) {
-      toast.error("Error fetching captcha");
-    }
-  };
+  // const fetchCaptcha = async () => {
+  //   try {
+  //     const data = await getCaptcha();
+  //     setCaptchaImage(data);
+  //   } catch (error) {
+  //     toast.error("Error fetching captcha");
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchCaptcha();
-  }, []);
+  // useEffect(() => {
+  //   fetchCaptcha();
+  // }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleCaptchaRefresh = async () => {
-    const data: string = await getCaptcha();
-    setCaptchaImage(data);
-  };
+  // const handleCaptchaRefresh = async () => {
+  //   const data: string = await getCaptcha();
+  //   setCaptchaImage(data);
+  // };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,20 +60,23 @@ const RegistrationForm = () => {
     }
 
     try {
-      const data = await registerMember(formData);
+      await registerMember(formData, tokenCaptcha);
       toast.success("You have successfully registered");
       setFormData({
         name: "",
         email: "",
         password: "",
-        captcha: "",
         homePage: "",
       });
-      console.log(data);
+      setTokenCaptcha("");
     } catch (error) {
       toast.error("Error during registration");
     }
   };
+
+  function onChange(value: string) {
+    setTokenCaptcha(value);
+  }
 
   return (
     <form className={styles.formContainer} onSubmit={handleSubmit}>
@@ -130,7 +135,7 @@ const RegistrationForm = () => {
         />
       </label>
 
-      <label className={styles.formLabel}>
+      {/* <label className={styles.formLabel}>
         <p className={styles.formSubtitle}>
           Please confirm that you are not a robot.
         </p>
@@ -157,7 +162,16 @@ const RegistrationForm = () => {
           placeholder="Enter the captcha"
           required
         />
-      </label>
+      </label> */}
+      <div
+        className={styles.recaptcha}
+        style={{ transform: "scale(0.85)", transformOrigin: "0 0" }}
+      >
+        <ReCAPTCHA
+          sitekey={process.env.REACT_APP_CAPTCHA_KEY!}
+          onChange={onChange as ((token: string | null) => void) | undefined}
+        />
+      </div>
 
       <button type="submit" className={styles.submitButton}>
         Sign Up

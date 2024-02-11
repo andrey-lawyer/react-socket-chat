@@ -4,12 +4,8 @@ class SocketApi {
   static socket: null | Socket = null;
 
   static createConnectionWithToken(authToken: string) {
-    // const BACKEND_URL =
-    //   import.meta.env.VITE_BACKEND_URL || "https://nest-sockets.onrender.com/";
-    // const BACKEND_URL =
-    //   import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/";
-    console.log(process.env.REACT_APP_BACKEND_URL);
-    const BACKEND_URL = "http://localhost:3000/";
+    // console.log(process.env.REACT_APP_BACKEND_URL);
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL!;
 
     this.socket = io(BACKEND_URL, {
       auth: { token: authToken },
